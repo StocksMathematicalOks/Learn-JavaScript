@@ -557,3 +557,24 @@ function missingNumA(arr) {
         }
     }
 }
+
+//Return an Array of SubArrays (EDABIT):
+var y = 1;
+var z = "edabit";
+var x = 2;
+function matrix(x, y, z) {
+	var NewArr = [];
+	var NewArr2 = [];
+	function ElemCreate(x,y,z){
+	for(i=0;i<x*y;i++){
+		NewArr.push(z);
+	}
+	return NewArr;
+}
+	var NewArr = ElemCreate(x,y,z);
+	for(i=0;i<x;i++){
+		NewArr2.push(NewArr.slice(i,i+y));
+	}
+	return NewArr2;
+}
+console.log(matrix(x,y,z));
