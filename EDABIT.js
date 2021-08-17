@@ -510,3 +510,50 @@ function filterArray(arr) {
 	}
 }
 console.log(filterArray(arr));
+
+
+//TheDailyByte (Stock Prices):
+var prices = [3,2,4,3,5,6,7]
+function BiggestProfit(prices){
+    return Math.max.apply(Math,prices);
+}
+console.log(BiggestProfit(prices));
+
+
+//Maximum value in an Array (Two Methods):
+function findHighest(arr) {
+	arr.sort(function(a,b){return a-b});
+	return arr.pop();
+}
+function findHighest(arr) {
+    return Math.max.apply(Math, arr);
+}
+
+//Let's sort this Array! (EDABIT):
+function ascDesNone(arr, str) {
+	if(str == "Asc"){
+	return arr.sort(function(a,b){return a-b});
+	}
+	if(str == "Des"){
+	return arr.sort(function(a,b){return b-a});
+	}
+	if(str == "None"){
+	return arr;
+	}
+}
+
+//Find the Missing Number (EDABIT):
+function missingNum(arr) {
+	var NumArr = Array.from(Array(11).keys());
+	NumArr.shift();
+	return NumArr.filter(x=>!arr.includes(x))[0];
+}
+// Find the Missing Number Second Method (EDABIT):
+function missingNumA(arr) {
+	arr.sort(function(a,b){return a-b});
+    for(i=0;i<arr.length;i++){
+        if(arr[i+1] - arr[i] !== 1){
+            return (arr[i]+1);
+        }
+    }
+}
