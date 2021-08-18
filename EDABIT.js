@@ -578,3 +578,185 @@ function matrix(x, y, z) {
 	return NewArr2;
 }
 console.log(matrix(x,y,z));
+
+//Sum of Odd and Even Numbers (EDABIT):
+var arr = [1, 2, 3, 4, 5, 6];
+function sumOddAndEven(arr) {
+	var NewArr2 = [];
+	var NewArr3 = [];
+	for(i=0;i<arr.length;i++){
+		if(arr[i]%2 == 0){
+			NewArr2.push(arr[i]);
+		}
+		if(arr[i]%2 !== 0){
+			NewArr3.push(arr[i]);
+		}
+	}
+	var Even = NewArr2.reduce((a,b) => a+b,0);
+	var Odd = NewArr3.reduce((a,b) => a+b,0);
+	return [Even, Odd];
+}
+console.log(sumOddAndEven(arr));
+
+//Find value in Binary Tree Second Method (EDABIT):
+function valueInTree(tree, val) {
+	var NewArr = tree.flat(Infinity);
+	if(NewArr.includes(val) == true){
+		return true;
+	}
+	if(NewArr.includes(val) == false){
+		return false
+	}
+}
+console.log(valueInTree(tree, val));
+
+//Minimum and Maximum Value in BST (EDABIT):
+class Node {
+    constructor(data) {
+      this.data = data;
+      this.right = null;
+      this.left = null;
+    }
+  }
+  
+  class BST {
+    constructor() {
+      this.root = null;
+    }
+    insert(element) {
+      const node = new Node(element);
+      if (!this.root) {
+        this.root = node;
+      } else {
+        this.insertNode(this.root, node);
+      }
+    }
+    insertNode(node, newNode) {
+      if (node.data > newNode.data) {
+        if (!node.left) {
+          node.left = newNode;
+        } else {
+          this.insertNode(node.left, newNode);
+        }
+      } else {
+        if (!node.right) {
+          node.right = newNode;
+        } else {
+          this.insertNode(node.right, newNode);
+        }
+      }
+    }
+      // Start
+    minimum() {
+          var NewArr = [];
+     let current = this.root;
+          while(current.left !== null){
+              current = current.left;
+          }
+          NewArr.push(current.data);
+          return Math.max.apply(Math, NewArr);
+    }
+    maximum() {
+      var NewArr2 = [];
+     let current = this.root;
+          while(current.right !== null){
+              current = current.right;
+          }
+          NewArr2.push(current.data);
+          return Math.max.apply(Math, NewArr2);
+    }
+      // End
+  }
+
+//Reverse a String (FreeCodeCamp.org):
+function reverseString(str) {
+    var Str1 = str.split("");
+    var NewArr = new Array();
+    function Reverse(){
+    for (var i = Str1.length - 1; i >= 0; i--){
+      NewArr.push(Str1[i]);
+          }
+      return NewArr;
+      }
+    var NewArr = Reverse();
+    var NewArr2 = NewArr.join('');
+    return NewArr2;
+    }
+    
+    console.log(reverseString("hello"))
+    reverseString("hello");
+
+
+//Factorialize a Number (FreeCodeCamp.org):
+function factorialize(num) {
+    if(num <= 1){
+      return 1;
+    }
+    else{
+      return num*factorialize(num-1);
+    }
+  }
+  factorialize(5);
+
+
+//Sum of All Numbers in a Range (FreeCodeCamp.org):
+function sumAll(arr){
+    var arr2 = arr.sort(function(a,b){return a-b});
+    var start = arr2[0];
+    var end = arr2[1];
+    function range(start, end) {
+    return Array(end - start + 1).fill().map((_, idx) => start + idx)
+    }
+    var result = range(start, end);
+    var FinalResult = result.reduce((a,b) => a+b, 0);
+    return FinalResult;
+    }
+    console.log(sumAll([1,4]));
+
+
+//Diff Two Arrays (FreeCodeCamp.org):
+function diffArray(arr1, arr2) {
+    return arr1.concat(arr2).filter(x=>!arr2.includes(x)||!arr1.includes(x));
+    }
+    console.log(diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]));
+
+//Reverse A Binary String (EDABIT):
+var num = 10;
+function reversedBinaryInteger(num) {
+	var str = Number(num).toString(2);
+	function ReverseString(){
+	var Str1 = str.split("");
+    var NewArr = new Array();
+    function Reverse(){
+    for (var i = Str1.length - 1; i >= 0; i--){
+      NewArr.push(Str1[i]);
+          }
+      return NewArr;
+      }
+    var NewArr = Reverse();
+    var NewArr2 = NewArr.join('');
+    return NewArr2;
+	}
+	var NewArr2 = ReverseString();``
+  var NewArr3 = [NewArr2].map((i)=>Number(i));
+  var NewNum3 = NewArr3[0];
+	var ReverNum = parseInt(NewNum3, 2);
+  return ReverNum;
+  }
+console.log(reversedBinaryInteger(num));
+
+
+//Three Arrays! (EDABIT):
+var arr1 = [1, 2, 3]; 
+var arr2 = [5, 3, 2];
+var arr3 = [7, 3, 2];
+function sumCommon(arr1, arr2, arr3) {
+    return (arr1.concat(arr2).concat(arr3).filter(x=>!arr1.includes(x)||!arr2.includes(x)||!arr3.includes(x))).reduce((a,b)=>a+b,0);
+}
+
+
+//Seek and Destroy (FreeCodeCamp.org):
+function destroyer(arr, ...ValstoRemove) {
+    return arr.filter(item=>!ValstoRemove.includes(item));
+}
+console.log(destroyer([1, 2, 3, 1, 2, 3], 2, 3));
