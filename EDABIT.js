@@ -760,3 +760,25 @@ function destroyer(arr, ...ValstoRemove) {
     return arr.filter(item=>!ValstoRemove.includes(item));
 }
 console.log(destroyer([1, 2, 3, 1, 2, 3], 2, 3));
+
+//Sort Positives, Keep Negatives (EDABIT):
+var arr = [1,2,3,4,-3,-4,5,-6,7];
+function Ascend(){
+var NewRR = new Array();
+var arr2 = arr.filter(x=>Math.sign(x)==1);
+function Negatives(){
+	for(i=0;i<arr.length;i++){
+   if(Math.sign(arr[i]) == -1){
+   		NewRR.push([arr[i]], i);
+   		} 
+		}
+  return NewRR;
+	}
+  var NewRR = Negatives();
+  var SortedArr = arr2.sort(function(a,b){return a-b});
+ 	for(i=0;i<NewRR.length;i+=2){
+  SortedArr.splice(NewRR[i+1],0,NewRR[i]);
+  }
+  return SortedArr;
+}
+console.log(Ascend());
