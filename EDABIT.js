@@ -1053,3 +1053,39 @@ elements.splice(NewRR[i], 1, "5");
 return [elements.join("")].map((i)=>Number(i))[0];
 }
 console.log(Test2());
+
+//Create Spaces between Joint Words in a String:
+var camelCase = str;
+var tmp = camelCase[0];
+function Split(){
+            for (var i = 1; i < camelCase.length; i++)
+            {
+                var hasNextCap = false;
+                var hasPrevCap = false;
+
+                var charValue = camelCase.charCodeAt(i);
+                if (charValue > 64 && charValue < 91)
+                {
+                    if (camelCase.length > i + 1)
+                    {
+                        var next_charValue = camelCase.charCodeAt(i + 1);
+                        if (next_charValue > 64 && next_charValue < 91)
+                            hasNextCap = true;
+                    }
+
+                    if (i - 1 > -1)
+                    {
+                        var prev_charValue =  camelCase.charCodeAt(i - 1);
+                        if (prev_charValue > 64 && prev_charValue < 91)
+                            hasPrevCap = true;
+                    }
+
+
+                    if (i < camelCase.length-1 &&
+                        (!(hasNextCap && hasPrevCap || hasPrevCap)
+                        || (hasPrevCap && !hasNextCap)))
+                        tmp += " ";
+                }
+                tmp += camelCase[i];
+            }
+}
