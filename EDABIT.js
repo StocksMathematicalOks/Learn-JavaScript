@@ -782,3 +782,274 @@ function Negatives(){
   return SortedArr;
 }
 console.log(Ascend());
+
+//Code for finding the biggest sum of two numbers in an array:
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+ var maxSubArray = function(nums) {
+    if(nums.length == 1){
+        return nums[0];
+    }
+    else{
+    var NewRR = new Array();
+    var Maximum = Math.max.apply(Math, nums);
+    function Nested(){
+    for(var i=0;i<nums.length;i++){
+        if(nums[i] !== Maximum){
+            NewRR.push(nums[i]+Maximum);
+            }
+        }
+        return NewRR;
+    }
+    var NewRR = Nested();
+    return Math.max.apply(Math, NewRR);
+    }
+};
+
+
+//Return Largest Numbers in Arrays (FreeCodeCamp.org):
+function largestOfFour(arr) {
+    var NewRR = new Array();
+    function SliceTest(){
+    for(var i=0;i<arr.length;i++){
+        for(var j=0;j<arr[i].length;j++){
+          NewRR.push(Math.max.apply(Math, arr[i]));
+        }
+      }
+    return NewRR;
+    }
+    var NewRR = SliceTest();
+    var FinalArr = NewRR.filter(function (el, i, NewRR) {
+    return NewRR.indexOf(el) === i;});
+    return FinalArr;
+  }
+  console.log(largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]));
+
+
+//Repeat a String Repeat a String (FreeCodeCamp.org):
+function repeatStringNumTimes(str, num) {
+    if(Math.sign(num) == 1){
+    var RepArr = Array(num).fill(str);
+    var RepArrStr = RepArr.join('');
+    return RepArrStr;
+  }
+  else {
+    return "";
+    }
+  } 
+  console.log(repeatStringNumTimes("abc", 3));
+
+
+//Truncate a String (FreeCodeCamp.org):
+function truncateString(str, num) {
+    if (str.length > num) {
+    var NewStr = str.split("");
+    var NumStr = NewStr.slice(0, num);
+    var NumStr2 = NumStr.join('');
+    return NumStr2+'...';
+    } else {
+      return str;
+    }
+  }
+  
+  console.log(truncateString("A-tisket a-tasket A green and yellow basket", 8));
+
+
+//Search and Replace (FreeCodeCamp.org):
+function myReplace(str, before, after) {
+    var Str2 = str.split(" ");
+    var IndexBef = Str2.indexOf(before);
+    function startsWithCapital(before){
+      return (before[0] === before[0].toUpperCase());
+  }
+  if(startsWithCapital(before) == true){
+  function capitalizeFirstLetter(after) {
+    return after[0].toUpperCase() + after.slice(1);
+  }
+  var NewWord = capitalizeFirstLetter(after);
+  Str2.splice(IndexBef,1,NewWord);
+  return Str2.join(" ");
+  }
+  if(startsWithCapital(before) == false){
+  function decapitalizeFirstLetter(after) {
+    return after[0].toLowerCase() + after.slice(1);
+  }
+  var NewWord = decapitalizeFirstLetter(after);
+  Str2.splice(IndexBef,1,NewWord);
+  return Str2.join(" ");
+  }
+  }  
+console.log(myReplace("I think we should look up there", "up", "Down"));
+
+
+//Sorted Union (FreeCodeCamp.org):
+function uniteUnique(arr) {
+    var concatArr = [];
+    var i = 0;
+    while (arguments[i]) {
+      concatArr = concatArr.concat(arguments[i]);
+      i++;
+    }
+    function flatten(concatArr) {
+      return concatArr.reduce(
+          function(memo, el) {
+              var items = Array.isArray(el) ? flatten(el) : [el];
+              return memo.concat(items);
+          },
+          []);
+  }
+  var NewArr2 = flatten(concatArr);
+  var Deduped = NewArr2.filter(function (el, i, NewArr2) {
+  return NewArr2.indexOf(el) === i;});
+  return Deduped;
+  }
+  console.log(uniteUnique([1, 2, 3], [5, 2, 1, 4], [2, 1], [6, 7, 8]));
+
+
+//Arguments Optional (FreeCodeCamp.org):
+function addTogether() {
+    var total = 0;
+    const [first, second] = arguments;
+    if (typeof(first) !== "number"){
+    return undefined;
+    }
+    if(second === undefined){
+    return (second) => addTogether(first, second);
+    }
+    if (typeof(second) !== "number"){
+    return undefined;
+    }
+    else{
+    for(var i=0;i<arguments.length;i++){
+    total += arguments[i];
+    }
+    return total;
+    }
+    }
+    console.log(addTogether(2,5));
+
+
+//Remove Element from an Array (Formal Definition):
+var val = 3;
+var nums = [3,2,2,3];
+function ValNums(nums, val) {
+    var NewRR = new Array();
+    for(i=0;i<nums.length;i++){
+       if(nums[i]>val){
+       NewRR.push(nums[i]);
+       }
+       if(nums[i]<val){
+       NewRR.push(nums[i]);
+       }
+    }
+    return NewRR;
+};
+console.log(ValNums(nums, val));
+
+
+//Everything Be True (FreeCodeCamp.org):
+function truthCheck(collection, pre){
+    var NewRR = new Array();
+    function Array1(){
+    for(var i=0; i<collection.length; i++){
+    NewRR.push(collection[i].hasOwnProperty(pre) && Boolean(collection[i][pre]));
+    }
+    return NewRR;
+    }
+    var NewRR = Array1();
+    if(NewRR.includes(false)){
+    return false;
+    }
+    else{
+      return true;
+    }
+    }
+
+//Shorcut:
+function truthCheck(collection, pre) {
+    return collection.every(obj => obj[pre]);
+  }
+
+
+//Missing Letters (FreeCodeCamp.org):
+function fearNotLetter(str) {
+    var Str2 = str.split("");
+    function genCharArray(charA, charZ) {
+        var a = [], i = charA.charCodeAt(0), j = charZ.charCodeAt(0);
+        for (; i <= j; ++i) {
+            a.push(String.fromCharCode(i));
+        }
+        return a;
+    }
+    var NewRR = genCharArray(Str2[0], Str2[Str2.length-1]);
+    var LastVal = NewRR.filter(x=>!Str2.includes(x));
+    return LastVal[0];
+    }
+    console.log(fearNotLetter("abce"));
+
+
+//SteamRoller (FreeCodeCamp.org):
+function steamrollArray(arr) {
+    var concatArr = arr;
+      function flatten(concatArr) {
+        return concatArr.reduce(
+            function(memo, el) {
+  //Ternary Operator statement combined with recursive flattening implementation.
+                var items = Array.isArray(el) ? flatten(el) : [el];
+  //Gets the items in the array that are in separate arrays, and concatenates them into a new Array.
+                return memo.concat(items);
+            },
+            []);
+    }
+    return flatten(concatArr);
+  }
+  steamrollArray([1, [2], [3, [[4]]]]);
+
+
+//Replace All Values in a String with Another:
+//Replacing all "_" with "-".
+var Str1 = "asds_asdsasdnnf_asdh_n_n";
+var elements = Str1.split("");
+var NewRR = new Array();
+function Test1(){
+for(var i=0; i<elements.length;i++){
+if(elements[i] == "_"){
+NewRR.push(i);
+}
+}
+return NewRR;
+}
+var NewRR = Test1();
+function Test2(){
+for(var i=0; i<NewRR.length;i++){
+elements.splice(NewRR[i], 1, "-");
+}
+return elements.join("");
+}
+console.log(Test2());
+
+
+//Replace All Values in a Number with Another:
+//Replacing "4" with "5", using String Lietrals.
+var Str1 = 1245;
+var Str1 = `${Str1}`;	
+var elements = Str1.split("");
+var NewRR = new Array();
+function Test1(){
+for(var i=0; i<elements.length;i++){
+if(elements[i] == "4"){
+NewRR.push(i);
+}
+}
+return NewRR;
+}
+var NewRR = Test1();
+function Test2(){
+for(var i=0; i<NewRR.length;i++){
+elements.splice(NewRR[i], 1, "5");
+}
+return [elements.join("")].map((i)=>Number(i))[0];
+}
+console.log(Test2());
